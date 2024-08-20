@@ -1,3 +1,5 @@
+// server .js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -16,10 +18,11 @@ app.post('/api/contact', async (req, res) => {
 
   try {
     const client = await pool.connect();
-    const query = 'INSERT INTO contacts (name, email, message) VALUES ($1, $2, $3) RETURNING *';
+    const query = 'INSERT INTO school.contacts (name, email, message) VALUES ($1, $2, $3) RETURNING *';
     const values = [name, email, message];
 
     const result = await client.query(query, values);
+    console.log(result.rows[0]);  // Log the inserted row
     client.release();
 
     res.status(200).json({ message: 'Form submitted successfully', data: result.rows[0] });
