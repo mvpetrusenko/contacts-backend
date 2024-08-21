@@ -1,4 +1,5 @@
-// db.js
+// db.js 
+
 
 const { Pool } = require('pg');
 
@@ -9,6 +10,8 @@ const pool = new Pool({
   database: 'node_js_project',     // Replace with your PostgreSQL database name
   password: 'root', // Replace with your PostgreSQL password
   port: 5432,                 // Replace with your PostgreSQL port if different
-});
+}); 
+
+
 
 module.exports = pool;

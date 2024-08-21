@@ -1,4 +1,9 @@
-// server .js
+// server .js 
+//import { Telegraf } from 'telegraf' 
+const { Telegraf } = require('telegraf');
+
+
+const bot = new Telegraf('7151569555:AAGsU8dJYxsylxU6pOBkRHVGV-_T_U-ooAs');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -24,6 +29,10 @@ app.post('/api/contact', async (req, res) => {
     const result = await client.query(query, values);
     console.log(result.rows[0]);  // Log the inserted row
     client.release();
+
+    bot.telegram.sendMessage(1142550794, `You received the new message from the school website
+    \nname: ${name} \nemail: ${email} \nmessage: ${message}`);
+
 
     res.status(200).json({ message: 'Form submitted successfully', data: result.rows[0] });
   } catch (error) {
